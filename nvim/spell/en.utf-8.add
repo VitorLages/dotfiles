@@ -1,0 +1,15 @@
+workspace
+Uncomment
+recv
+str
+MutStr
+mutex
+https
+    // https://man7.org/linux/man-pages/man3/cfmakeraw.3.html/!
+man7
+linux
+man3
+cfmakeraw
+html
+neovim
+tcgetattr

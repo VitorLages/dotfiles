@@ -1,0 +1,101 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[░▒▓](red)\
+[  ](bg:red fg:#090c0c)\
+[](bg:maroon fg:red)\
+$directory\
+[](fg:maroon bg:peach)\
+$git_branch\
+$git_status\
+[](fg:peach bg:yellow)\
+$nodejs\
+$rust\
+$golang\
+$php\
+$c\
+[](fg:yellow bg:#1d2230)\
+$time\
+\n$character"""
+
+palette = 'catppuccin_mocha'
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+orange = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+[directory]
+style = "fg:#090c0c bg:maroon"
+format = "[ $path ]($style)"
+#truncation_length = 3
+#truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:#394260"
+format = '[[ $symbol $branch ](fg:#090c0c bg:peach)]($style)'
+
+[git_status]
+style = "bg:#394260"
+format = '[[($all_status$ahead_behind )](fg:#090c0c bg:peach)]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:yellow"
+format = '[[ $symbol ($version) ](fg:#090c0c bg:yellow)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:yellow"
+format = '[[ $symbol ($version) ](fg:#090c0c bg:yellow)]($style)'
+
+[golang]
+symbol = "󰟓"
+style = "bg:"
+format = '[[ $symbol ($version) ](fg:#090c0c bg:yellow)]($style)'
+
+[php]
+symbol = ""
+style = "bg:yellow"
+format = '[[ $symbol ($version) ](fg:#090c0c bg:yellow)]($style)'
+
+[c]
+symbol = ""
+style = "bg:"
+format = '[[ $symbol ($version) ](fg:#090c0c bg:yellow)]($style)'
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[  $time ](fg:flamingo bg:)]($style)'

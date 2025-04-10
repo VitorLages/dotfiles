@@ -1,0 +1,1 @@
+source "/home/vitorlages/.deno/env.fish"
