@@ -56,6 +56,23 @@ return { -- LSP Configuration & Plugins
 			local servers = {
 				clangd = {},
 				gopls = {},
+				pylsp = {
+					settings = {
+						pylsp = {
+							configurationSources = { "pycodestyle" },
+							plugins = {
+								pycodestyle = {
+									enabled = true,
+									ignore = { "E302", "E501", "W293", "W291", "E202", "E226" },
+									maxLineLength = 120,
+								},
+								pyflakes = {
+									enabled = true,
+								},
+							},
+						},
+					},
+				},
 				lua_ls = {
 					settings = {
 						Lua = {

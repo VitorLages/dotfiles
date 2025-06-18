@@ -18,6 +18,7 @@ return {
 					"rust",
 					"typst",
 					"typescript",
+					"python",
 				},
 				sync_install = false,
 				highlight = { enable = true },
