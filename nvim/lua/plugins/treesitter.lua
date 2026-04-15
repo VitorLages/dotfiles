@@ -11,14 +11,17 @@ return {
 
 			configs.setup({
 				ensure_installed = {
-					"c",
-					"go",
+					"javascript",
 					"html",
+					"markdown",
+					"vue",
 					"lua",
-					"rust",
 					"typst",
 					"typescript",
 					"python",
+					"c",
+					"php",
+					"go",
 				},
 				sync_install = false,
 				highlight = { enable = true },

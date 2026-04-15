@@ -50,25 +50,52 @@ return { -- LSP Configuration & Plugins
 			})
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 			-- Enable the following language servers
 			local servers = {
-				clangd = {},
-				gopls = {},
+				-- clangd = {},
+				-- gopls = {},
+				vue_ls = {
+					filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+					init_options = {
+						vue = {
+							hybridMode = false,
+						},
+						typescript = {
+							tsdk = vim.fn.stdpath("data")
+								.. "/mason/packages/typescript-language-server/node_modules/typescript/lib",
+						},
+					},
+				},
+				ts_ls = {
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
+					init_options = {
+						plugins = {
+							{
+								name = "@vue/typescript-plugin",
+								location = vim.fn.stdpath("data")
+									.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+								languages = { "vue" },
+							},
+						},
+					},
+				},
 				pylsp = {
 					settings = {
 						pylsp = {
-							configurationSources = { "pycodestyle" },
 							plugins = {
 								pycodestyle = {
 									enabled = true,
-									ignore = { "E302", "E501", "W293", "W291", "E202", "E226" },
+									ignore = { "E302", "E501", "W293", "W291", "E202", "E226", "W292", "E501" },
 									maxLineLength = 120,
 								},
-								pyflakes = {
+								pyflakes = { enabled = true },
+								pylsp_mypy = { enabled = true },
+								jedi_completion = {
 									enabled = true,
 								},
+								rope_autoimport = { enabled = true },
 							},
 						},
 					},
@@ -93,6 +120,9 @@ return { -- LSP Configuration & Plugins
 
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
+				"vue-language-server",
+				"typescript-language-server",
+				"python-lsp-server",
 				"stylua", -- Used to format Lua code
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
@@ -100,12 +130,14 @@ return { -- LSP Configuration & Plugins
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
-						local server = servers[server_name] or {}
+						local server_opts = servers[server_name] or {}
 						-- This handles overriding only values explicitly passed
 						-- by the server configuration above. Useful when disabling
 						-- certain features of an LSP (for example, turning off formatting for tsserver)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+						server_opts.capabilities =
+							vim.tbl_deep_extend("force", {}, capabilities, server_opts.capabilities or {})
+
+						require("lspconfig")[server_name].setup(server_opts)
 					end,
 				},
 			})

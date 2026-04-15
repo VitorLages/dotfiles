@@ -30,9 +30,11 @@ return {
 			-- Search help.
 			vim.keymap.set("n", "<leader>h", builtin.help_tags, {})
 			-- Search files.
-			vim.keymap.set("n", "<leader>/", builtin.find_files, {})
+			vim.keymap.set("n", "<leader>q", builtin.find_files, {})
 			-- Search by grep.
-			vim.keymap.set("n", "<leader>?", builtin.live_grep, {})
+			vim.keymap.set("n", "<leader>r", builtin.git_status, {})
+			-- Search diagnostics.
+			vim.keymap.set("n", "<leader>w", builtin.live_grep, {})
 			-- Search diagnostics.
 			vim.keymap.set("n", "<leader>d", builtin.diagnostics, {})
 			-- Fuzzily seach in current buffer.

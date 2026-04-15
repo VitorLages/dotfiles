@@ -7,6 +7,7 @@ return {
 					lua = { "stylua" },
 					go = { "gofmt" },
 					rust = { "rustfmt" },
+					python = { "black" },
 				},
 			})
 			-- Format on save.
